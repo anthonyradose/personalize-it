@@ -1,16 +1,5 @@
-export type Option = {
-    name: string;
-    values: string[] | null;
-  };
-  
-  export type Product = {
-    product: string;
-    description: string;
-    price: number | number[];
-    options: Option[];
-    image: string;
-  };
-  
+import type { Product } from "../types/index";
+
   export const products: Product[] = [
     {
       product: "T-shirt",
