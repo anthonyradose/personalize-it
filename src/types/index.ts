@@ -23,3 +23,7 @@ export type Option = {
     onOptionChange: (optionName: string, value: string) => void;
   }
   
+  export interface LivePreviewProps {
+    selectedProduct: string;
+    selectedOptions: { [key: string]: string };
+  }
