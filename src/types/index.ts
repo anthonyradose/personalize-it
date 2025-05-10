@@ -27,3 +27,8 @@ export type Option = {
     selectedProduct: string;
     selectedOptions: { [key: string]: string };
   }
+
+  export interface SubmitButtonProps {
+    onSubmit: () => void;
+  }
+  
