@@ -15,3 +15,11 @@ export type Option = {
     products: Product[];
     onProductChange: (product: string) => void;
   }
+
+
+ export  interface OptionFormProps {
+    options: Option[];
+    selectedOptions: { [optionName: string]: string };
+    onOptionChange: (optionName: string, value: string) => void;
+  }
+  
