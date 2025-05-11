@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './styles/App.css'
+import React, { useState } from "react";
+import { products } from "./data/products";
+import ProductSelector from "./components/ProductSelector";
+import OptionForm from "./components/OptionForm";
+import LivePreview from "./components/LivePreview";
+import SubmitButton from "./components/SubmitButton";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [selectedProduct, setSelectedProduct] = useState<string>("T-shirt");
+  const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string }>({});
+
+  const product = products.find((p) => p.product === selectedProduct);
+
+  const handleProductChange = (product: string) => {
+    setSelectedProduct(product);
+    setSelectedOptions({});
+  };
+
+  const handleOptionChange = (name: string, value: string) => {
+    setSelectedOptions((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = () => {
+    console.log("Submitting config", { product: selectedProduct, options: selectedOptions });
+    localStorage.setItem("productConfig", JSON.stringify({ product: selectedProduct, options: selectedOptions }));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      {/* Product Selector Component */}
+      <ProductSelector products={products} onProductChange={handleProductChange} />
 
-export default App
+      {/* OptionForm Component - Passes selectedOptions to reflect current state */}
+      {product && (
+        <OptionForm
+          options={product.options}
+          selectedOptions={selectedOptions}
+          onOptionChange={handleOptionChange}
+        />
+      )}
+
+      {/* LivePreview Component - Reflects the selected options */}
+      <LivePreview selectedProduct={selectedProduct} selectedOptions={selectedOptions} />
+
+      {/* SubmitButton Component */}
+      <SubmitButton onSubmit={handleSubmit} />
+    </div>
+  );
+};
+
+export default App;
