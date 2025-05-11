@@ -1,6 +1,6 @@
 // src/components/LivePreview.tsx
 import React from "react";
-import type { LivePreviewProps } from "../types";
+import type { LivePreviewProps } from "../../types";
 
 const LivePreview: React.FC<LivePreviewProps> = ({ selectedProduct, selectedOptions }) => {
   return (

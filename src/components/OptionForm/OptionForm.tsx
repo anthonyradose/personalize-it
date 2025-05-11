@@ -1,5 +1,6 @@
 import React from "react";
-import type { OptionFormProps } from "../types";
+import type { OptionFormProps } from "../../types";
+import styles from "./OptionForm.module.css";
 
 const OptionForm: React.FC<OptionFormProps> = ({
   options,
@@ -9,10 +10,13 @@ const OptionForm: React.FC<OptionFormProps> = ({
   return (
     <div>
       {options.map((option) => (
-        <div key={option.name}>
-          <label htmlFor={option.name}>{option.name}:</label>
+        <div key={option.name} className={styles.formGroup}>
+          <label htmlFor={option.name} className={styles.label}>
+            {option.name}:
+          </label>
           <select
             id={option.name}
+            className={styles.select}
             value={selectedOptions[option.name] || ""}
             onChange={(e) => onOptionChange(option.name, e.target.value)}
           >

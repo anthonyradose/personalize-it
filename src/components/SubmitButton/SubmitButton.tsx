@@ -1,5 +1,5 @@
 import React from "react";
-import type { SubmitButtonProps } from "../types";
+import type { SubmitButtonProps } from "../../types";
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({ onSubmit }) => {
     return (

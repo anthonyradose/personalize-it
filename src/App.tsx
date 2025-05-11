@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { products } from "./data/products";
-import ProductSelector from "./components/ProductSelector";
-import OptionForm from "./components/OptionForm";
-import LivePreview from "./components/LivePreview";
-import SubmitButton from "./components/SubmitButton";
+import ProductSelector from "./components/ProductSelector/ProductSelector";
+import OptionForm from "./components/OptionForm/OptionForm";
+import LivePreview from "./components/LivePreview/LivePreview";
+import SubmitButton from "./components/SubmitButton/SubmitButton";
 
 const App: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<string>("T-shirt");

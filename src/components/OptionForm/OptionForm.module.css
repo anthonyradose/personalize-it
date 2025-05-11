@@ -1,0 +1,25 @@
+.formGroup {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #333;
+  }
+  
+  .select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  

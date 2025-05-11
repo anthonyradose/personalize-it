@@ -1,5 +1,5 @@
 import React from "react";
-import type { ProductSelectorProps } from "../types/index";
+import type { ProductSelectorProps } from "../../types";
 
 
 const ProductSelector: React.FC<ProductSelectorProps> = ({ products, onProductChange }) => {
