@@ -1,0 +1,19 @@
+.appContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

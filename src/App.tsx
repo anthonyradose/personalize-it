@@ -4,6 +4,7 @@ import ProductSelector from "./components/ProductSelector/ProductSelector";
 import OptionForm from "./components/OptionForm/OptionForm";
 import LivePreview from "./components/LivePreview/LivePreview";
 import SubmitButton from "./components/SubmitButton/SubmitButton";
+import styles from "./styles/App.module.css";
 
 const App: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<string>("T-shirt");
@@ -22,28 +23,27 @@ const App: React.FC = () => {
 
   const handleSubmit = () => {
     console.log("Submitting config", { product: selectedProduct, options: selectedOptions });
-    localStorage.setItem("productConfig", JSON.stringify({ product: selectedProduct, options: selectedOptions }));
+    localStorage.setItem(
+      "productConfig",
+      JSON.stringify({ product: selectedProduct, options: selectedOptions })
+    );
   };
 
   return (
-    <div>
-      {/* Product Selector Component */}
-      <ProductSelector products={products} onProductChange={handleProductChange} />
-
-      {/* OptionForm Component - Passes selectedOptions to reflect current state */}
-      {product && (
-        <OptionForm
-          options={product.options}
-          selectedOptions={selectedOptions}
-          onOptionChange={handleOptionChange}
-        />
-      )}
-
-      {/* LivePreview Component - Reflects the selected options */}
-      <LivePreview selectedProduct={selectedProduct} selectedOptions={selectedOptions} />
-
-      {/* SubmitButton Component */}
-      <SubmitButton onSubmit={handleSubmit} />
+    <div className={styles.appContainer}>
+      <h1 className={styles.heading}>Product Customizer</h1>
+      <div className={styles.formSection}>
+        <ProductSelector products={products} onProductChange={handleProductChange} />
+        {product && (
+          <OptionForm
+            options={product.options}
+            selectedOptions={selectedOptions}
+            onOptionChange={handleOptionChange}
+          />
+        )}
+        <LivePreview selectedProduct={selectedProduct} selectedOptions={selectedOptions} />
+        <SubmitButton onSubmit={handleSubmit} />
+      </div>
     </div>
   );
 };
