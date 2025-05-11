@@ -1,19 +1,158 @@
 .appContainer {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
-  color: #333;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .heading {
-  text-align: center;
-  margin-bottom: 2rem;
   font-size: 2rem;
+  font-weight: bold;
+  color: #333;
 }
 
-.formSection {
+.main {
+  display: flex;
+  flex-direction: column; 
+  gap: 20px;
+  flex: 1;
+}
+
+.controls {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 20px;
+}
+
+.preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Breakpoints */
+
+/* 320px (smallest mobile) */
+@media (min-width: 320px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+}
+
+/* 375px */
+@media (min-width: 375px) {
+  .heading {
+    font-size: 1.75rem;
+  }
+}
+
+/* 425px (larger phone size) */
+@media (min-width: 425px) {
+  .heading {
+    font-size: 2rem;
+  }
+}
+
+/* 576px (small tablets) */
+@media (min-width: 576px) {
+  .main {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .controls, .preview {
+    flex: 1;
+  }
+}
+
+/* 768px (tablets) */
+@media (min-width: 768px) {
+  .heading {
+    font-size: 2.25rem;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* 992px (small desktops) */
+@media (min-width: 992px) {
+  .heading {
+    font-size: 2.5rem;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* 1024px (larger tablets or small desktops) */
+@media (min-width: 1024px) {
+  .heading {
+    font-size: 2.75rem;
+  }
+
+  .footer {
+    margin-top: 40px;
+  }
+}
+
+/* 1200px (desktops) */
+@media (min-width: 1200px) {
+  .heading {
+    font-size: 3rem;
+  }
+
+  .main {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .controls, .preview {
+    flex: 1;
+  }
+}
+
+/* 1400px (larger desktops) */
+@media (min-width: 1400px) {
+  .heading {
+    font-size: 3.5rem;
+  }
+}
+
+/* 1440px (extra large screens) */
+@media (min-width: 1440px) {
+  .heading {
+    font-size: 4rem;
+  }
 }
