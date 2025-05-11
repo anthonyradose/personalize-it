@@ -1,0 +1,29 @@
+.live-preview-container {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.live-preview-container h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.live-preview-container p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.live-preview-container p:first-child {
+  font-weight: bold;
+}
+
+.live-preview-container p:last-child {
+  margin-bottom: 0;
+}
