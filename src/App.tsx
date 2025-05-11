@@ -5,13 +5,15 @@ import OptionForm from "./components/OptionForm/OptionForm";
 import LivePreview from "./components/LivePreview/LivePreview";
 import SubmitButton from "./components/SubmitButton/SubmitButton";
 import usePersistedState from "./hooks/usePersistedState";
+import { getProductByName } from "./utils/productUtils";
 import styles from "./styles/App.module.css";
 
 const App: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = usePersistedState<string>("selectedProduct", "T-shirt");
   const [selectedOptions, setSelectedOptions] = usePersistedState<{ [key: string]: string }>("selectedOptions", {});
 
-  const product = products.find((p) => p.product === selectedProduct);
+  const product = getProductByName(selectedProduct);
+
 
   const handleProductChange = (product: string) => {
     setSelectedProduct(product);
@@ -28,21 +30,34 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.appContainer}>
-      <h1 className={styles.heading}>Product Customizer</h1>
-      <div className={styles.formSection}>
-        <ProductSelector products={products} onProductChange={handleProductChange} />
-        {product && (
-          <OptionForm
-            options={product.options}
-            selectedOptions={selectedOptions}
-            onOptionChange={handleOptionChange}
-          />
-        )}
-        <LivePreview selectedProduct={selectedProduct} selectedOptions={selectedOptions} />
+      <header className={styles.header}>
+        <h1 className={styles.heading}>Product Customizer</h1>
+      </header>
+  
+      <main className={styles.main}>
+        <section className={styles.controls}>
+          <ProductSelector products={products} onProductChange={handleProductChange} />
+  
+          {product && (
+            <OptionForm
+              options={product.options}
+              selectedOptions={selectedOptions}
+              onOptionChange={handleOptionChange}
+            />
+          )}
+        </section>
+  
+        <section className={styles.preview}>
+          <LivePreview selectedProduct={selectedProduct} selectedOptions={selectedOptions} />
+        </section>
+      </main>
+  
+      <footer className={styles.footer}>
         <SubmitButton onSubmit={handleSubmit} />
-      </div>
+      </footer>
     </div>
   );
+  
 };
 
 export default App;
