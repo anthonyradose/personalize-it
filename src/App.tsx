@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { products } from "./data/products";
 import ProductSelector from "./components/ProductSelector/ProductSelector";
 import OptionForm from "./components/OptionForm/OptionForm";
 import LivePreview from "./components/LivePreview/LivePreview";
 import SubmitButton from "./components/SubmitButton/SubmitButton";
+import usePersistedState from "./hooks/usePersistedState";
 import styles from "./styles/App.module.css";
 
 const App: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState<string>("T-shirt");
-  const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string }>({});
+  const [selectedProduct, setSelectedProduct] = usePersistedState<string>("selectedProduct", "T-shirt");
+  const [selectedOptions, setSelectedOptions] = usePersistedState<{ [key: string]: string }>("selectedOptions", {});
 
   const product = products.find((p) => p.product === selectedProduct);
 
@@ -23,10 +24,6 @@ const App: React.FC = () => {
 
   const handleSubmit = () => {
     console.log("Submitting config", { product: selectedProduct, options: selectedOptions });
-    localStorage.setItem(
-      "productConfig",
-      JSON.stringify({ product: selectedProduct, options: selectedOptions })
-    );
   };
 
   return (
