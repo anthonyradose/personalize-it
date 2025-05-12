@@ -1,5 +1,3 @@
-// components/SaveConfigurationModal/SaveConfigurationModal.tsx
-
 import React, { useState } from "react";
 import styles from "./SaveConfigurationModal.module.css";
 
@@ -23,7 +21,7 @@ const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
     e.preventDefault();
     
     if (!configName.trim()) {
-      setError("Please enter a name for your configuration");
+      setError("Please enter a name for your design");
       return;
     }
     
@@ -36,12 +34,12 @@ const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h2 className={styles.modalTitle}>Save Your Configuration</h2>
+        <h2 className={styles.modalTitle}>Save Your Design</h2>
         
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label htmlFor="config-name" className={styles.label}>
-              Configuration Name:
+              Give your design a name:
             </label>
             <input
               id="config-name"
@@ -49,7 +47,7 @@ const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
               className={styles.input}
               value={configName}
               onChange={(e) => setConfigName(e.target.value)}
-              placeholder="My Custom Product"
+              placeholder="My Custom Design"
             />
             {error && <p className={styles.errorText}>{error}</p>}
           </div>
@@ -63,7 +61,7 @@ const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
               Cancel
             </button>
             <button type="submit" className={styles.saveButton}>
-              Save Configuration
+              Save Design
             </button>
           </div>
         </form>

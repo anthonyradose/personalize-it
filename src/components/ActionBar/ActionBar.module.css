@@ -1,0 +1,81 @@
+.actionBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    width: 100%;
+  }
+  
+  .loadDesignContainer {
+    flex: 1;
+  }
+  
+  .primaryActions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .submitButton, .saveButton, .loadButton {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    min-width: 150px;
+    text-align: center;
+  }
+  
+  .submitButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+  }
+  
+  .submitButton:hover {
+    background-color: #45a049;
+  }
+  
+  .saveButton {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+  }
+  
+  .saveButton:hover {
+    background-color: #0b7dda;
+  }
+  
+  .loadButton {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  
+  .loadButton:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .submitButton:active, .saveButton:active, .loadButton:active {
+    transform: scale(0.98);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .actionBar {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .loadDesignContainer, .primaryActions {
+      width: 100%;
+    }
+    
+    .primaryActions {
+      justify-content: space-between;
+    }
+    
+    .submitButton, .saveButton, .loadButton {
+      min-width: 0;
+      flex: 1;
+    }
+  }

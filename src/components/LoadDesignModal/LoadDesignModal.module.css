@@ -1,0 +1,128 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .modalTitle {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .emptyMessage {
+    text-align: center;
+    color: #666;
+    padding: 2rem 0;
+  }
+  
+  .designsList {
+    margin-bottom: 1.5rem;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  
+  .designItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s;
+  }
+  
+  .designItem:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .designInfo {
+    flex: 1;
+  }
+  
+  .designName {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .designDetails {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .designDate {
+    display: block;
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 0.25rem;
+  }
+  
+  .designActions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .loadButton, .deleteButton, .closeButton {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .loadButton {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+  }
+  
+  .loadButton:hover {
+    background-color: #3a7bc8;
+  }
+  
+  .deleteButton {
+    background-color: #f5f5f5;
+    color: #e53935;
+    border: 1px solid #ddd;
+  }
+  
+  .deleteButton:hover {
+    background-color: #ffebee;
+  }
+  
+  .modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+  
+  .closeButton {
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  
+  .closeButton:hover {
+    background-color: #e0e0e0;
+  }

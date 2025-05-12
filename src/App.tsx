@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { products } from "./data/products";
 import ProductSelector from "./components/ProductSelector/ProductSelector";
 import OptionForm from "./components/OptionForm/OptionForm";
 import LivePreview from "./components/LivePreview/LivePreview";
-import SubmitButton from "./components/SubmitButton/SubmitButton";
+import ActionBar from "./components/ActionBar/ActionBar"; // Replace SubmitButton with ActionBar
 import SaveConfigurationModal from "./components/SaveConfigurationModal/SaveConfigurationModal";
+import LoadDesignModal from "./components/LoadDesignModal/LoadDesignModal"; // New import
 import usePersistedState from "./hooks/usePersistedState";
 import { getProductByName } from "./utils/productUtils";
 import { validateProductConfiguration } from "./utils/validationUtils";
-import { saveConfiguration } from "./services/configurationService";
+import { 
+  saveConfiguration, 
+  getSavedConfigurations, 
+  deleteConfiguration,
+  type SavedConfiguration
+} from "./services/configurationService";
 import styles from "./styles/App.module.css";
 import { logo1, defaultImg } from "./assets/images/index";
 
 const App: React.FC = () => {
-  // Use persistBetweenSessions=false for a fresh start each time
+  // State for product customization
   const [selectedProduct, setSelectedProduct] = usePersistedState<string>(
     "selectedProduct", 
     "", 
@@ -26,11 +32,22 @@ const App: React.FC = () => {
     false
   );
 
-  // State for the save modal
+  // State for modals
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+  const [isLoadModalOpen, setIsLoadModalOpen] = useState(false);
   
-  // Message state (can be used for both save and add to cart)
+  // State for saved designs
+  const [savedDesigns, setSavedDesigns] = useState<SavedConfiguration[]>([]);
+  
+  // Message state
   const [message, setMessage] = useState<{text: string, type: 'success' | 'error'} | null>(null);
+
+  // Load saved designs when needed
+  useEffect(() => {
+    if (isLoadModalOpen) {
+      setSavedDesigns(getSavedConfigurations());
+    }
+  }, [isLoadModalOpen]);
 
   const product = getProductByName(selectedProduct, products);
 
@@ -99,12 +116,41 @@ const App: React.FC = () => {
     setIsSaveModalOpen(true);
   };
 
+  const handleLoadClick = () => {
+    // Refresh saved designs list and open modal
+    setSavedDesigns(getSavedConfigurations());
+    setIsLoadModalOpen(true);
+  };
+
   const handleSaveConfiguration = (name: string) => {
     // Save the configuration to localStorage
-    saveConfiguration(name, selectedProduct, selectedOptions);
+    const savedConfig = saveConfiguration(name, selectedProduct, selectedOptions);
+    
+    // Update saved designs list
+    setSavedDesigns(prevDesigns => [...prevDesigns, savedConfig]);
     
     // Show success message
-    showMessage(`Configuration "${name}" saved successfully!`);
+    showMessage(`Your ${selectedProduct} design "${name}" saved successfully!`);
+  };
+
+  const handleLoadDesign = (design: SavedConfiguration) => {
+    // Update product and options to match the saved design
+    setSelectedProduct(design.product);
+    setSelectedOptions(design.options);
+    
+    // Show success message
+    showMessage(`Design "${design.name}" loaded successfully!`);
+  };
+
+  const handleDeleteDesign = (id: string) => {
+    // Delete from localStorage
+    deleteConfiguration(id);
+    
+    // Update saved designs list
+    setSavedDesigns(prevDesigns => prevDesigns.filter(design => design.id !== id));
+    
+    // Show success message
+    showMessage(`Design deleted successfully!`);
   };
 
   return (
@@ -114,7 +160,7 @@ const App: React.FC = () => {
         <h1 className={styles.heading}>Product Customizer</h1>
       </header>
 
-      {/* Message display (works for both add to cart and save) */}
+      {/* Message display */}
       {message && (
         <div className={`${styles.message} ${styles[message.type]}`}>
           {message.text}
@@ -150,12 +196,12 @@ const App: React.FC = () => {
       </main>
 
       <footer className={styles.footer}>
-        {selectedProduct && product && (
-          <SubmitButton 
-            onSubmit={handleSubmit} 
-            onSaveClick={handleSaveClick}
-          />
-        )}
+        {/* Always show ActionBar, but "Save Design" and "Add to Cart" only work with validation */}
+        <ActionBar 
+          onSubmit={handleSubmit} 
+          onSaveClick={handleSaveClick}
+          onLoadClick={handleLoadClick}
+        />
       </footer>
 
       {/* Save Configuration Modal */}
@@ -163,6 +209,15 @@ const App: React.FC = () => {
         isOpen={isSaveModalOpen}
         onClose={() => setIsSaveModalOpen(false)}
         onSave={handleSaveConfiguration}
+      />
+
+      {/* Load Design Modal */}
+      <LoadDesignModal 
+        isOpen={isLoadModalOpen}
+        onClose={() => setIsLoadModalOpen(false)}
+        savedDesigns={savedDesigns}
+        onLoad={handleLoadDesign}
+        onDelete={handleDeleteDesign}
       />
     </div>
   );
