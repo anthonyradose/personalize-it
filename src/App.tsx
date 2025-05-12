@@ -7,6 +7,7 @@ import SubmitButton from "./components/SubmitButton/SubmitButton";
 import usePersistedState from "./hooks/usePersistedState";
 import { getProductByName } from "./utils/productUtils";
 import styles from "./styles/App.module.css";
+import { logo1 } from "./assets/images/index";
 
 const App: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = usePersistedState<string>("selectedProduct", "T-shirt");
@@ -31,6 +32,7 @@ const App: React.FC = () => {
   return (
     <div className={styles.appContainer}>
       <header className={styles.header}>
+        <img src={logo1} alt="Logo" className={styles.logo} />
         <h1 className={styles.heading}>Product Customizer</h1>
       </header>
   

@@ -11,6 +11,7 @@ import sticker2 from "./sticker-2.webp";
 import sticker3 from "./sticker-3.webp";
 import gymBag from "./gym-bag.webp";
 import giftCard from "./gift-card.webp";
+import logo1 from "./logo-1.webp";
 
 export {
   tshirtBlack,
@@ -25,5 +26,6 @@ export {
   sticker2,
   sticker3,
   gymBag,
-  giftCard
+  giftCard,
+  logo1
 };
