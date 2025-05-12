@@ -53,6 +53,23 @@
   pointer-events: none;
 }
 
+.giftcard-overlay {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+text-align: center;
+  font-size: 1.5rem;
+  color: black;
+  pointer-events: none;
+  font-weight: bold;
+}
 
 /* Responsive image */
 .preview-image {
@@ -62,10 +79,18 @@
   object-fit: contain; 
 }
 
+@media (min-width: 375px) {
+  .giftcard-overlay {
+    font-size: 2rem;
+  }
+}
 /* At 576px (small tablet) */
 @media (min-width: 576px) {
   .live-preview-container {
     max-width: 500px;
+  }
+  .giftcard-overlay {
+    font-size: 1.5rem;
   }
 }
 
@@ -73,6 +98,9 @@
 @media (min-width: 768px) {
   .live-preview-container {
     max-width: 600px;
+  }
+  .giftcard-overlay {
+    font-size: 2rem;
   }
 }
 

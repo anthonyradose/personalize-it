@@ -44,6 +44,11 @@ const LivePreview: React.FC<LivePreviewProps> = ({ selectedProduct, selectedOpti
       {selectedOptions["Text"]}
     </div>
   )}
+  {selectedProduct === "Gift Card" && selectedOptions["Price"] && (
+  <div className={styles["giftcard-overlay"]}>
+    {selectedOptions["Price"]}
+  </div>
+)}
       </div>
     </div>
   );
