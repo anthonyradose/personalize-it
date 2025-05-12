@@ -12,7 +12,7 @@ const App: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = usePersistedState<string>("selectedProduct", "T-shirt");
   const [selectedOptions, setSelectedOptions] = usePersistedState<{ [key: string]: string }>("selectedOptions", {});
 
-  const product = getProductByName(selectedProduct);
+  const product = getProductByName(selectedProduct, products);
 
 
   const handleProductChange = (product: string) => {
@@ -48,7 +48,7 @@ const App: React.FC = () => {
         </section>
   
         <section className={styles.preview}>
-          <LivePreview selectedProduct={selectedProduct} selectedOptions={selectedOptions} />
+          <LivePreview selectedProduct={selectedProduct} selectedOptions={selectedOptions}   products={products}/>
         </section>
       </main>
   

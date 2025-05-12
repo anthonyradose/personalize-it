@@ -1,8 +1,19 @@
 import React from "react";
 import type { LivePreviewProps } from "../../types";
+import { getProductByName } from "../../utils/productUtils";
 import styles from "./LivePreview.module.css";
 
-const LivePreview: React.FC<LivePreviewProps> = ({ selectedProduct, selectedOptions }) => {
+const LivePreview: React.FC<LivePreviewProps> = ({ selectedProduct, selectedOptions, products }) => {
+  const product = getProductByName(selectedProduct, products);
+  
+  if (!product) return null;
+
+  let previewImage = product.image;
+
+  if (product.images && selectedOptions["Color"]) {
+    previewImage = product.images[selectedOptions["Color"]];
+  }
+
   return (
     <div className={styles["live-preview-container"]}>
       <h3>Live Preview</h3>
@@ -12,8 +23,12 @@ const LivePreview: React.FC<LivePreviewProps> = ({ selectedProduct, selectedOpti
           {key}: {value}
         </p>
       ))}
+      <div className={styles["image-container"]}>
+        <img src={previewImage} alt={`${selectedProduct} preview`} className={styles["preview-image"]} />
+      </div>
     </div>
   );
 };
+
 
 export default LivePreview;

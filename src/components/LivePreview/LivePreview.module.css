@@ -27,3 +27,39 @@
 .live-preview-container p:last-child {
   margin-bottom: 0;
 }
+
+/* Responsive image */
+.preview-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%; 
+  object-fit: contain; 
+}
+
+/* At 576px (small tablet), adjust container width */
+@media (min-width: 576px) {
+  .live-preview-container {
+    max-width: 500px;
+  }
+}
+
+/* At 768px (tablet), adjust container width */
+@media (min-width: 768px) {
+  .live-preview-container {
+    max-width: 600px;
+  }
+}
+
+/* At 992px (small desktop), adjust container width */
+@media (min-width: 992px) {
+  .live-preview-container {
+    max-width: 700px;
+  }
+}
+
+/* At 1200px (larger desktop), adjust container width */
+@media (min-width: 1200px) {
+  .live-preview-container {
+    max-width: 900px;
+  }
+}
