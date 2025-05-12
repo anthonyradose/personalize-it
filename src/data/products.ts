@@ -23,7 +23,6 @@ export const products: Product[] = [
     price: 9.99,
     options: [
       { name: "Color", values: ["Black", "White", "Green", "Blue", "Pink"] },
-      { name: "Text", values: null }
     ],
     image: bottleBlack,
     images: {
@@ -52,9 +51,7 @@ export const products: Product[] = [
     product: "Gym Bag",
     description: "A stylish gym bag for your workouts.", 
     price: 29.99,
-    options: [
-      { name: "Text", values: null }
-    ],
+    options: [],
     image: gymBag,
   },
   {

@@ -14,19 +14,32 @@ const OptionForm: React.FC<OptionFormProps> = ({
           <label htmlFor={option.name} className={styles.label}>
             {option.name}:
           </label>
-          <select
-            id={option.name}
-            className={styles.select}
-            value={selectedOptions[option.name] || ""}
-            onChange={(e) => onOptionChange(option.name, e.target.value)}
-          >
-            <option value="">Select {option.name}</option>
-            {option.values?.map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
+
+          {option.name.toLowerCase() === "text" ? (
+            <textarea
+              id={option.name}
+              className={styles.textarea}
+              value={selectedOptions[option.name] || ""}
+              onChange={(e) => onOptionChange(option.name, e.target.value)}
+              placeholder="Type your message..."
+              rows={3}
+              maxLength={60}
+            />
+          ) : (
+            <select
+              id={option.name}
+              className={styles.select}
+              value={selectedOptions[option.name] || ""}
+              onChange={(e) => onOptionChange(option.name, e.target.value)}
+            >
+              <option value="">Select {option.name}</option>
+              {option.values?.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
       ))}
     </div>

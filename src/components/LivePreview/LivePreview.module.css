@@ -6,6 +6,12 @@
   background-color: #f9f9f9;
   max-width: 400px;
   margin: 2rem auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  white-space: normal;
+  overflow: hidden;
 }
 
 .live-preview-container h3 {
@@ -27,6 +33,26 @@
 .live-preview-container p:last-child {
   margin-bottom: 0;
 }
+.image-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10%;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  font-size: 0.3rem;
+  word-wrap: break-word;
+  pointer-events: none;
+}
+
 
 /* Responsive image */
 .preview-image {
@@ -36,28 +62,31 @@
   object-fit: contain; 
 }
 
-/* At 576px (small tablet), adjust container width */
+/* At 576px (small tablet) */
 @media (min-width: 576px) {
   .live-preview-container {
     max-width: 500px;
   }
 }
 
-/* At 768px (tablet), adjust container width */
+/* At 768px (tablet) */
 @media (min-width: 768px) {
   .live-preview-container {
     max-width: 600px;
   }
 }
 
-/* At 992px (small desktop), adjust container width */
+/* At 992px (small desktop) */
 @media (min-width: 992px) {
   .live-preview-container {
     max-width: 700px;
   }
+  .text-overlay {
+    font-size: 0.5rem;
+  }
 }
 
-/* At 1200px (larger desktop), adjust container width */
+/* At 1200px (larger desktop) */
 @media (min-width: 1200px) {
   .live-preview-container {
     max-width: 900px;

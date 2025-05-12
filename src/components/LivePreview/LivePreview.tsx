@@ -25,6 +25,11 @@ const LivePreview: React.FC<LivePreviewProps> = ({ selectedProduct, selectedOpti
       ))}
       <div className={styles["image-container"]}>
         <img src={previewImage} alt={`${selectedProduct} preview`} className={styles["preview-image"]} />
+        {selectedOptions["Text"] && (
+    <div className={styles["text-overlay"]}>
+      {selectedOptions["Text"]}
+    </div>
+  )}
       </div>
     </div>
   );
