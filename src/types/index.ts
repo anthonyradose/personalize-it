@@ -49,3 +49,23 @@ export interface SavedConfiguration {
   options: { [key: string]: string };
   savedAt: number;
 }
+
+export interface ActionBarProps {
+  onSubmit: () => void;
+  onSaveClick: () => void;
+  onLoadClick: () => void; 
+}
+
+export interface LoadDesignModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  savedDesigns: SavedConfiguration[];
+  onLoad: (design: SavedConfiguration) => void;
+  onDelete: (id: string) => void;
+}
+
+export interface SaveConfigurationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (name: string) => void;
+}

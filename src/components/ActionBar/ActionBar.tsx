@@ -1,11 +1,7 @@
 import React from "react";
 import styles from "./ActionBar.module.css";
+import type { ActionBarProps } from "../../types";
 
-interface ActionBarProps {
-  onSubmit: () => void;
-  onSaveClick: () => void;
-  onLoadClick: () => void; 
-}
 
 const ActionBar: React.FC<ActionBarProps> = ({ 
   onSubmit, 

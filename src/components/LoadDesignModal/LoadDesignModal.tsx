@@ -1,16 +1,9 @@
 // components/LoadDesignModal/LoadDesignModal.tsx
 
 import React from "react";
-import type { SavedConfiguration } from "../../services/configurationService";
 import styles from "./LoadDesignModal.module.css";
+import type { LoadDesignModalProps } from "../../types";
 
-interface LoadDesignModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  savedDesigns: SavedConfiguration[];
-  onLoad: (design: SavedConfiguration) => void;
-  onDelete: (id: string) => void;
-}
 
 const LoadDesignModal: React.FC<LoadDesignModalProps> = ({
   isOpen,

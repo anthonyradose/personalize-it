@@ -1,11 +1,8 @@
+
 import React, { useState } from "react";
 import styles from "./SaveConfigurationModal.module.css";
+import type { SaveConfigurationModalProps } from "../../types";
 
-interface SaveConfigurationModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSave: (name: string) => void;
-}
 
 const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
   isOpen,
