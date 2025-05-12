@@ -1,15 +1,9 @@
 // services/configurationService.ts (updated)
 
 import { getItem, setItem } from './storageService';
+import type { SavedConfiguration } from '../types';
 
-// Type for saved configuration
-export interface SavedConfiguration {
-  id: string;
-  name: string;
-  product: string;
-  options: { [key: string]: string };
-  savedAt: number; // timestamp
-}
+
 
 // Key for localStorage
 const SAVED_CONFIGS_KEY = 'product_customizer_saved_configs';

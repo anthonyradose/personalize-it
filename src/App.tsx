@@ -13,10 +13,10 @@ import {
   saveConfiguration, 
   getSavedConfigurations, 
   deleteConfiguration,
-  type SavedConfiguration
 } from "./services/configurationService";
 import styles from "./styles/App.module.css";
 import { logo1, defaultImg } from "./assets/images/index";
+import type { SavedConfiguration } from "./types";
 
 const App: React.FC = () => {
   // State for product customization

@@ -31,10 +31,7 @@ export interface LivePreviewProps {
   defaultImage?: string;
 }
 
-export interface SubmitButtonProps {
-  onSubmit: () => void;
-  onSaveClick: () => void; 
-}
+
 
 export interface SaveConfigurationModalProps {
   isOpen: boolean;
@@ -64,8 +61,4 @@ export interface LoadDesignModalProps {
   onDelete: (id: string) => void;
 }
 
-export interface SaveConfigurationModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSave: (name: string) => void;
-}
+
