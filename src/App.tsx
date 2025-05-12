@@ -1,27 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { products } from "./data/products";
 import ProductSelector from "./components/ProductSelector/ProductSelector";
 import OptionForm from "./components/OptionForm/OptionForm";
 import LivePreview from "./components/LivePreview/LivePreview";
 import SubmitButton from "./components/SubmitButton/SubmitButton";
+import SaveConfigurationModal from "./components/SaveConfigurationModal/SaveConfigurationModal";
 import usePersistedState from "./hooks/usePersistedState";
 import { getProductByName } from "./utils/productUtils";
+import { saveConfiguration } from "./services/configurationService";
 import styles from "./styles/App.module.css";
 import { logo1, defaultImg } from "./assets/images/index";
 
-
 const App: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = usePersistedState<string>("selectedProduct", "");
-  const [selectedOptions, setSelectedOptions] = usePersistedState<{ [key: string]: string }>("selectedOptions", {});
+  // Use persistBetweenSessions=false for a fresh start each time
+  const [selectedProduct, setSelectedProduct] = usePersistedState<string>(
+    "selectedProduct", 
+    "", 
+    false
+  );
+  
+  const [selectedOptions, setSelectedOptions] = usePersistedState<{ [key: string]: string }>(
+    "selectedOptions", 
+    {}, 
+    false
+  );
 
-  // Clear persisted state on initial load
-  useEffect(() => {
-    localStorage.removeItem("selectedProduct");
-    localStorage.removeItem("selectedOptions");
-    
-    setSelectedProduct("");
-    setSelectedOptions({});
-  }, []);
+  // State for the save modal
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+  
+  // Message state (can be used for both save and add to cart)
+  const [message, setMessage] = useState<{text: string, type: 'success' | 'error'} | null>(null);
 
   const product = getProductByName(selectedProduct, products);
 
@@ -34,8 +42,37 @@ const App: React.FC = () => {
     setSelectedOptions((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Show a message for 3 seconds
+  const showMessage = (text: string, type: 'success' | 'error' = 'success') => {
+    setMessage({ text, type });
+    
+    // Hide message after 3 seconds
+    setTimeout(() => {
+      setMessage(null);
+    }, 3000);
+  };
+
   const handleSubmit = () => {
     console.log("Submitting config", { product: selectedProduct, options: selectedOptions });
+    
+    // Show added to cart message
+    showMessage(`${selectedProduct} added to cart successfully!`);
+    
+    // Optional: Reset form after adding to cart
+    // setSelectedProduct("");
+    // setSelectedOptions({});
+  };
+
+  const handleSaveClick = () => {
+    setIsSaveModalOpen(true);
+  };
+
+  const handleSaveConfiguration = (name: string) => {
+    // Save the configuration to localStorage
+    saveConfiguration(name, selectedProduct, selectedOptions);
+    
+    // Show success message
+    showMessage(`Configuration "${name}" saved successfully!`);
   };
 
   return (
@@ -44,6 +81,13 @@ const App: React.FC = () => {
         <img src={logo1} alt="Logo" className={styles.logo} />
         <h1 className={styles.heading}>Product Customizer</h1>
       </header>
+
+      {/* Message display (works for both add to cart and save) */}
+      {message && (
+        <div className={`${styles.message} ${styles[message.type]}`}>
+          {message.text}
+        </div>
+      )}
 
       <main className={styles.main}>
         <section className={styles.controls}>
@@ -75,9 +119,19 @@ const App: React.FC = () => {
 
       <footer className={styles.footer}>
         {selectedProduct && product && (
-          <SubmitButton onSubmit={handleSubmit} />
+          <SubmitButton 
+            onSubmit={handleSubmit} 
+            onSaveClick={handleSaveClick}
+          />
         )}
       </footer>
+
+      {/* Save Configuration Modal */}
+      <SaveConfigurationModal 
+        isOpen={isSaveModalOpen}
+        onClose={() => setIsSaveModalOpen(false)}
+        onSave={handleSaveConfiguration}
+      />
     </div>
   );
 };

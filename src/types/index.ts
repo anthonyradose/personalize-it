@@ -15,7 +15,7 @@ export interface Option {
 export interface ProductSelectorProps {
   products: Product[];
   onProductChange: (product: string) => void;
-  selectedProduct: string; // New property
+  selectedProduct: string;
 }
 
 export interface OptionFormProps {
@@ -28,9 +28,24 @@ export interface LivePreviewProps {
   selectedProduct: string;
   selectedOptions: { [key: string]: string };
   products: Product[];
-  defaultImage?: string; // New property
+  defaultImage?: string;
 }
 
 export interface SubmitButtonProps {
   onSubmit: () => void;
+  onSaveClick: () => void; 
+}
+
+export interface SaveConfigurationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (name: string) => void;
+}
+
+export interface SavedConfiguration {
+  id: string;
+  name: string;
+  product: string;
+  options: { [key: string]: string };
+  savedAt: number;
 }

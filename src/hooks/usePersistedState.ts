@@ -1,14 +1,29 @@
-import { useState, useEffect } from "react";
+// hooks/usePersistedState.ts (updated)
 
-function usePersistedState<T>(key: string, defaultValue: T): [T, React.Dispatch<React.SetStateAction<T>>] {
+import { useState, useEffect } from "react";
+import { getItem, setItem, removeItem } from "../services/storageService";
+
+function usePersistedState<T>(
+  key: string, 
+  defaultValue: T,
+  persistBetweenSessions: boolean = true
+): [T, React.Dispatch<React.SetStateAction<T>>] {
+  // Initialize state - only load from localStorage if persistence is enabled
   const [state, setState] = useState<T>(() => {
-    const stored = localStorage.getItem(key);
-    return stored ? JSON.parse(stored) : defaultValue;
+    if (persistBetweenSessions) {
+      return getItem<T>(key, defaultValue);
+    }
+    return defaultValue;
   });
 
+  // Handle persistence
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state));
-  }, [key, state]);
+    if (persistBetweenSessions) {
+      setItem(key, state);
+    } else {
+      removeItem(key);
+    }
+  }, [key, state, persistBetweenSessions]);
 
   return [state, setState];
 }
