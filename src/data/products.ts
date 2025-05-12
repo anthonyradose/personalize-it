@@ -58,7 +58,10 @@ export const products: Product[] = [
     product: "Gift Card",
     description: "A digital gift card for our store.",
     price: [10.00, 20.00, 50.00, 100.00],
-    options: [], 
+    options: [
+      { name: "Price", values: ["£10", "£20", "£50", "£100"] }
+    ],
     image: giftCard,
   }
+  
 ];

@@ -20,11 +20,23 @@ const LivePreview: React.FC<LivePreviewProps> = ({ selectedProduct, selectedOpti
     <div className={styles["live-preview-container"]}>
       <h3>Live Preview</h3>
       <p>You selected: {selectedProduct}</p>
-      {Object.entries(selectedOptions).map(([key, value]) => (
-        <p key={key}>
-          {key}: {value}
-        </p>
-      ))}
+      {Object.entries(selectedOptions).map(([key, value]) =>
+  key === "Price" ? null : (
+    <p key={key}>
+      {key}: {value}
+    </p>
+  )
+)}
+
+      <p>
+  Price:{" "}
+  {selectedOptions["Price"]
+    ? selectedOptions["Price"]
+    : Array.isArray(product.price)
+    ? product.price.join("/")
+    : product.price.toFixed(2)}
+</p>
+
       <div className={styles["image-container"]}>
         <img src={previewImage} alt={`${selectedProduct} preview`} className={styles["preview-image"]} />
         {selectedOptions["Text"] && (

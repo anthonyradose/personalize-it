@@ -12,7 +12,7 @@ const ProductSelector: React.FC<ProductSelectorProps> = ({ products, onProductCh
       >
         {products.map((product) => (
           <option key={product.product} value={product.product}>
-            {product.product}
+            {product.product} - £{Array.isArray(product.price) ? product.price.join("/") : product.price.toFixed(2)}
           </option>
         ))}
       </select>
