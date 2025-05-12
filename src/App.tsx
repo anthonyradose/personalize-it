@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { products } from "./data/products";
 import ProductSelector from "./components/ProductSelector/ProductSelector";
 import OptionForm from "./components/OptionForm/OptionForm";
@@ -7,14 +7,23 @@ import SubmitButton from "./components/SubmitButton/SubmitButton";
 import usePersistedState from "./hooks/usePersistedState";
 import { getProductByName } from "./utils/productUtils";
 import styles from "./styles/App.module.css";
-import { logo1 } from "./assets/images/index";
+import { logo1, defaultImg } from "./assets/images/index";
+
 
 const App: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = usePersistedState<string>("selectedProduct", "T-shirt");
+  const [selectedProduct, setSelectedProduct] = usePersistedState<string>("selectedProduct", "");
   const [selectedOptions, setSelectedOptions] = usePersistedState<{ [key: string]: string }>("selectedOptions", {});
 
-  const product = getProductByName(selectedProduct, products);
+  // Clear persisted state on initial load
+  useEffect(() => {
+    localStorage.removeItem("selectedProduct");
+    localStorage.removeItem("selectedOptions");
+    
+    setSelectedProduct("");
+    setSelectedOptions({});
+  }, []);
 
+  const product = getProductByName(selectedProduct, products);
 
   const handleProductChange = (product: string) => {
     setSelectedProduct(product);
@@ -35,12 +44,17 @@ const App: React.FC = () => {
         <img src={logo1} alt="Logo" className={styles.logo} />
         <h1 className={styles.heading}>Product Customizer</h1>
       </header>
-  
+
       <main className={styles.main}>
         <section className={styles.controls}>
-          <ProductSelector products={products} onProductChange={handleProductChange} />
-  
-          {product && (
+          <ProductSelector
+            products={products}
+            onProductChange={handleProductChange}
+            selectedProduct={selectedProduct}
+          />
+          
+          {/* Render OptionForm only if a product has been selected */}
+          {selectedProduct && product && (
             <OptionForm
               options={product.options}
               selectedOptions={selectedOptions}
@@ -48,18 +62,24 @@ const App: React.FC = () => {
             />
           )}
         </section>
-  
+
         <section className={styles.preview}>
-          <LivePreview selectedProduct={selectedProduct} selectedOptions={selectedOptions}   products={products}/>
+          <LivePreview
+            selectedProduct={selectedProduct}
+            selectedOptions={selectedOptions}
+            products={products}
+            defaultImage={defaultImg}
+          />
         </section>
       </main>
-  
+
       <footer className={styles.footer}>
-        <SubmitButton onSubmit={handleSubmit} />
+        {selectedProduct && product && (
+          <SubmitButton onSubmit={handleSubmit} />
+        )}
       </footer>
     </div>
   );
-  
 };
 
 export default App;
