@@ -10,9 +10,11 @@ const LivePreview: React.FC<LivePreviewProps> = ({ selectedProduct, selectedOpti
 
   let previewImage = product.image;
 
-  if (product.images && selectedOptions["Color"]) {
-    previewImage = product.images[selectedOptions["Color"]];
+  const firstOptionName = product.options?.[0]?.name;
+  if (product.images && firstOptionName && selectedOptions[firstOptionName]) {
+    previewImage = product.images[selectedOptions[firstOptionName]];
   }
+  
 
   return (
     <div className={styles["live-preview-container"]}>
