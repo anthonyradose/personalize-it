@@ -7,6 +7,7 @@ import SubmitButton from "./components/SubmitButton/SubmitButton";
 import SaveConfigurationModal from "./components/SaveConfigurationModal/SaveConfigurationModal";
 import usePersistedState from "./hooks/usePersistedState";
 import { getProductByName } from "./utils/productUtils";
+import { validateProductConfiguration } from "./utils/validationUtils";
 import { saveConfiguration } from "./services/configurationService";
 import styles from "./styles/App.module.css";
 import { logo1, defaultImg } from "./assets/images/index";
@@ -52,18 +53,49 @@ const App: React.FC = () => {
     }, 3000);
   };
 
+  // Validate product configuration
+  const validateConfiguration = (): boolean => {
+    if (!product) {
+      showMessage("Please select a product", "error");
+      return false;
+    }
+    
+    // Skip validation for products with no options
+    if (product.options.length === 0) {
+      return true;
+    }
+    
+    const { isValid, missingOptions } = validateProductConfiguration(product, selectedOptions);
+    
+    if (!isValid) {
+      showMessage(
+        `Please select the following options: ${missingOptions.join(", ")}`, 
+        "error"
+      );
+      return false;
+    }
+    
+    return true;
+  };
+
   const handleSubmit = () => {
+    // Validate before adding to cart
+    if (!validateConfiguration()) {
+      return;
+    }
+    
     console.log("Submitting config", { product: selectedProduct, options: selectedOptions });
     
     // Show added to cart message
     showMessage(`${selectedProduct} added to cart successfully!`);
-    
-    // Optional: Reset form after adding to cart
-    // setSelectedProduct("");
-    // setSelectedOptions({});
   };
 
   const handleSaveClick = () => {
+    // Validate before showing the save modal
+    if (!validateConfiguration()) {
+      return;
+    }
+    
     setIsSaveModalOpen(true);
   };
 
