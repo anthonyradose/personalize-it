@@ -1,81 +1,118 @@
+/* ActionBar.module.css */
+
 .actionBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
+  /* Component-specific variables */
+  --action-color-primary: #2196f3;
+  --action-color-primary-hover: #0b7dda;
+  --action-color-success: #4caf50;
+  --action-color-success-hover: #45a049;
+  --action-color-neutral: #f5f5f5;
+  --action-color-neutral-hover: #e0e0e0;
+  --action-color-border: #ddd;
+  --action-color-text-light: white;
+  --action-color-text-dark: #333;
+  --action-spacing-sm: 0.75rem;
+  --action-spacing-md: 1rem;
+  --action-spacing-lg: 1.5rem;
+  --action-border-radius: 4px;
+  --action-min-button-width: 150px;
+  --action-button-font-weight: 500;
+  --action-scale-active: 0.98;
+
+  /* Component styles */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--action-spacing-md) 0;
+  width: 100%;
+}
+
+.loadDesignContainer {
+  flex: 1;
+}
+
+.primaryActions {
+  display: flex;
+  gap: var(--action-spacing-md);
+}
+
+.submitButton,
+.saveButton,
+.loadButton {
+  padding: var(--action-spacing-sm) var(--action-spacing-lg);
+  border-radius: var(--action-border-radius);
+  font-weight: var(--action-button-font-weight);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  min-width: var(--action-min-button-width);
+  text-align: center;
+}
+
+.submitButton {
+  background-color: var(--action-color-success);
+  color: var(--action-color-text-light);
+  border: none;
+}
+
+.submitButton:hover,
+.submitButton:focus {
+  background-color: var(--action-color-success-hover);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.4);
+}
+
+.saveButton {
+  background-color: var(--action-color-primary);
+  color: var(--action-color-text-light);
+  border: none;
+}
+
+.saveButton:hover,
+.saveButton:focus {
+  background-color: var(--action-color-primary-hover);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.4);
+}
+
+.loadButton {
+  background-color: var(--action-color-neutral);
+  color: var(--action-color-text-dark);
+  border: 1px solid var(--action-color-border);
+}
+
+.loadButton:hover,
+.loadButton:focus {
+  background-color: var(--action-color-neutral-hover);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:active,
+.saveButton:active,
+.loadButton:active {
+  transform: scale(var(--action-scale-active));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .actionBar {
+    flex-direction: column;
+    gap: var(--action-spacing-md);
+  }
+
+  .loadDesignContainer,
+  .primaryActions {
     width: 100%;
   }
-  
-  .loadDesignContainer {
+
+  .primaryActions {
+    justify-content: space-between;
+  }
+
+  .submitButton,
+  .saveButton,
+  .loadButton {
+    min-width: 0;
     flex: 1;
   }
-  
-  .primaryActions {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .submitButton, .saveButton, .loadButton {
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-    min-width: 150px;
-    text-align: center;
-  }
-  
-  .submitButton {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-  }
-  
-  .submitButton:hover {
-    background-color: #45a049;
-  }
-  
-  .saveButton {
-    background-color: #2196f3;
-    color: white;
-    border: none;
-  }
-  
-  .saveButton:hover {
-    background-color: #0b7dda;
-  }
-  
-  .loadButton {
-    background-color: #f5f5f5;
-    color: #333;
-    border: 1px solid #ddd;
-  }
-  
-  .loadButton:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .submitButton:active, .saveButton:active, .loadButton:active {
-    transform: scale(0.98);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .actionBar {
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .loadDesignContainer, .primaryActions {
-      width: 100%;
-    }
-    
-    .primaryActions {
-      justify-content: space-between;
-    }
-    
-    .submitButton, .saveButton, .loadButton {
-      min-width: 0;
-      flex: 1;
-    }
-  }
+}

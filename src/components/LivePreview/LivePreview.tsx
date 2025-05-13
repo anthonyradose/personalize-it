@@ -3,29 +3,29 @@ import type { LivePreviewProps } from "../../types";
 import { getProductByName } from "../../utils/productUtils";
 import styles from "./LivePreview.module.css";
 
-const LivePreview: React.FC<LivePreviewProps> = ({ 
-  selectedProduct, 
-  selectedOptions, 
+const LivePreview: React.FC<LivePreviewProps> = ({
+  selectedProduct,
+  selectedOptions,
   products,
-  defaultImage 
+  defaultImage,
 }) => {
   // If no product selected, show default image
   if (!selectedProduct) {
     return (
       <div className={styles["live-preview-container"]}>
         <div className={styles["image-container"]}>
-          <img 
-            src={defaultImage} 
-            alt="Select a product" 
-            className={styles["preview-image"]} 
+          <img
+            src={defaultImage}
+            alt="Select a product"
+            className={styles["preview-image"]}
           />
         </div>
       </div>
     );
   }
-  
+
   const product = getProductByName(selectedProduct, products);
-  
+
   // Safety check
   if (!product) return null;
 
@@ -35,7 +35,7 @@ const LivePreview: React.FC<LivePreviewProps> = ({
   if (product.images && firstOptionName && selectedOptions[firstOptionName]) {
     previewImage = product.images[selectedOptions[firstOptionName]];
   }
-  
+
   // Regular display with product selected
   return (
     <div className={styles["live-preview-container"]}>
@@ -59,7 +59,11 @@ const LivePreview: React.FC<LivePreviewProps> = ({
       </p>
 
       <div className={styles["image-container"]}>
-        <img src={previewImage} alt={`${selectedProduct} preview`} className={styles["preview-image"]} />
+        <img
+          src={previewImage}
+          alt={`${selectedProduct} preview`}
+          className={styles["preview-image"]}
+        />
         {selectedOptions["Text"] && (
           <div className={styles["text-overlay"]}>
             {selectedOptions["Text"]}

@@ -1,128 +1,216 @@
+/* LoadDesignModal.module.css */
+
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
+  /* Component-specific variables */
+  --modal-color-white: white;
+  --modal-color-background: rgba(0, 0, 0, 0.5);
+  --modal-color-primary: #4a90e2;
+  --modal-color-primary-hover: #3a7bc8;
+  --modal-color-danger: #e53935;
+  --modal-color-danger-light: #ffebee;
+  --modal-color-neutral: #f5f5f5;
+  --modal-color-neutral-hover: #e0e0e0;
+  --modal-color-border: #ddd;
+  --modal-color-border-light: #eee;
+  --modal-color-text-dark: #333;
+  --modal-color-text-medium: #666;
+  --modal-color-text-light: #999;
+  --modal-spacing-xs: 0.25rem;
+  --modal-spacing-sm: 0.5rem;
+  --modal-spacing-md: 1rem;
+  --modal-spacing-lg: 1.5rem;
+  --modal-spacing-xl: 2rem;
+  --modal-font-size-xs: 0.8rem;
+  --modal-font-size-sm: 0.9rem;
+  --modal-font-size-base: 1rem;
+  --modal-font-size-md: 1.1rem;
+  --modal-font-size-lg: 1.5rem;
+  --modal-border-radius: 4px;
+  --modal-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
+  /* Component styles */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--modal-color-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: var(--modal-spacing-md);
+}
+
+.modalContent {
+  background-color: var(--modal-color-white);
+  padding: var(--modal-spacing-xl);
+  border-radius: var(--modal-border-radius);
+  box-shadow: var(--modal-box-shadow);
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--modal-color-primary) var(--modal-color-neutral);
+}
+
+.modalContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: var(--modal-color-neutral);
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background-color: var(--modal-color-primary);
+  border-radius: 20px;
+}
+
+.modalTitle {
+  margin-top: 0;
+  margin-bottom: var(--modal-spacing-lg);
+  font-size: var(--modal-font-size-lg);
+  color: var(--modal-color-text-dark);
+}
+
+.emptyMessage {
+  text-align: center;
+  color: var(--modal-color-text-medium);
+  padding: var(--modal-spacing-xl) 0;
+}
+
+.designsList {
+  margin-bottom: var(--modal-spacing-lg);
+  max-height: 50vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--modal-color-primary) var(--modal-color-neutral);
+}
+
+.designsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.designsList::-webkit-scrollbar-track {
+  background: var(--modal-color-neutral);
+}
+
+.designsList::-webkit-scrollbar-thumb {
+  background-color: var(--modal-color-primary);
+  border-radius: 20px;
+}
+
+.designItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--modal-spacing-md);
+  border: 1px solid var(--modal-color-border-light);
+  border-radius: var(--modal-border-radius);
+  margin-bottom: var(--modal-spacing-sm);
+  transition: background-color 0.2s;
+}
+
+.designItem:hover {
+  background-color: #f9f9f9;
+}
+
+.designInfo {
+  flex: 1;
+}
+
+.designName {
+  margin: 0 0 var(--modal-spacing-sm) 0;
+  font-size: var(--modal-font-size-md);
+}
+
+.designDetails {
+  margin: 0;
+  color: var(--modal-color-text-medium);
+  font-size: var(--modal-font-size-sm);
+}
+
+.designDate {
+  display: block;
+  font-size: var(--modal-font-size-xs);
+  color: var(--modal-color-text-light);
+  margin-top: var(--modal-spacing-xs);
+}
+
+.designActions {
+  display: flex;
+  gap: var(--modal-spacing-sm);
+}
+
+.loadButton,
+.deleteButton,
+.closeButton {
+  padding: var(--modal-spacing-sm) var(--modal-spacing-md);
+  border-radius: var(--modal-border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.loadButton {
+  background-color: var(--modal-color-primary);
+  color: var(--modal-color-white);
+  border: none;
+}
+
+.loadButton:hover,
+.loadButton:focus {
+  background-color: var(--modal-color-primary-hover);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.4);
+}
+
+.deleteButton {
+  background-color: var(--modal-color-neutral);
+  color: var(--modal-color-danger);
+  border: 1px solid var(--modal-color-border);
+}
+
+.deleteButton:hover,
+.deleteButton:focus {
+  background-color: var(--modal-color-danger-light);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--modal-spacing-md);
+}
+
+.closeButton {
+  background-color: var(--modal-color-neutral);
+  color: var(--modal-color-text-dark);
+  border: 1px solid var(--modal-color-border);
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  background-color: var(--modal-color-neutral-hover);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 576px) {
   .modalContent {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  
-  .modalTitle {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    color: #333;
-  }
-  
-  .emptyMessage {
-    text-align: center;
-    color: #666;
-    padding: 2rem 0;
-  }
-  
-  .designsList {
-    margin-bottom: 1.5rem;
-    max-height: 50vh;
-    overflow-y: auto;
-  }
-  
-  .designItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-    transition: background-color 0.2s;
-  }
-  
-  .designItem:hover {
-    background-color: #f9f9f9;
-  }
-  
-  .designInfo {
-    flex: 1;
-  }
-  
-  .designName {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.1rem;
-  }
-  
-  .designDetails {
-    margin: 0;
-    color: #666;
-    font-size: 0.9rem;
-  }
-  
-  .designDate {
-    display: block;
-    font-size: 0.8rem;
-    color: #999;
-    margin-top: 0.25rem;
+    padding: var(--modal-spacing-md);
   }
   
   .designActions {
-    display: flex;
-    gap: 0.5rem;
+    flex-direction: column;
   }
   
-  .loadButton, .deleteButton, .closeButton {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .loadButton {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-  }
-  
-  .loadButton:hover {
-    background-color: #3a7bc8;
-  }
-  
+  .loadButton,
   .deleteButton {
-    background-color: #f5f5f5;
-    color: #e53935;
-    border: 1px solid #ddd;
+    width: 100%;
+    text-align: center;
   }
-  
-  .deleteButton:hover {
-    background-color: #ffebee;
-  }
-  
-  .modalFooter {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1rem;
-  }
-  
-  .closeButton {
-    background-color: #f5f5f5;
-    color: #333;
-    border: 1px solid #ddd;
-  }
-  
-  .closeButton:hover {
-    background-color: #e0e0e0;
-  }
+}

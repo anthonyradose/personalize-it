@@ -1,28 +1,28 @@
 // services/configurationService.ts (updated)
 
 import { getItem, setItem } from './storageService';
-import type { SavedConfiguration } from '../types';
+import type { SavedDesign } from '../types';
 
 
 
 // Key for localStorage
 const SAVED_CONFIGS_KEY = 'product_customizer_saved_configs';
 
-// Get all saved configurations
-export const getSavedConfigurations = (): SavedConfiguration[] => {
-  return getItem<SavedConfiguration[]>(SAVED_CONFIGS_KEY, []);
+// Get all saved Designs
+export const getSavedDesigns = (): SavedDesign[] => {
+  return getItem<SavedDesign[]>(SAVED_CONFIGS_KEY, []);
 };
 
-// Save a new configuration
-export const saveConfiguration = (
+// Save a new design
+export const saveDesign = (
   name: string,
   product: string,
   options: { [key: string]: string }
-): SavedConfiguration => {
-  const configs = getSavedConfigurations();
+): SavedDesign => {
+  const configs = getSavedDesigns();
   
-  // Create new configuration
-  const newConfig: SavedConfiguration = {
+  // Create new design
+  const newConfig: SavedDesign = {
     id: generateId(),
     name,
     product,
@@ -30,7 +30,7 @@ export const saveConfiguration = (
     savedAt: Date.now(),
   };
   
-  // Add to existing configurations
+  // Add to existing designs
   configs.push(newConfig);
   
   // Save to localStorage
@@ -39,19 +39,19 @@ export const saveConfiguration = (
   return newConfig;
 };
 
-// Load a specific configuration
-export const loadConfiguration = (id: string): SavedConfiguration | null => {
-  const configs = getSavedConfigurations();
+// Load a specific design
+export const loadDesign = (id: string): SavedDesign | null => {
+  const configs = getSavedDesigns();
   return configs.find(config => config.id === id) || null;
 };
 
-// Delete a saved configuration
-export const deleteConfiguration = (id: string): boolean => {
-  const configs = getSavedConfigurations();
+// Delete a saved design
+export const deleteDesign = (id: string): boolean => {
+  const configs = getSavedDesigns();
   const newConfigs = configs.filter(config => config.id !== id);
   
   if (newConfigs.length === configs.length) {
-    return false; // Configuration not found
+    return false; // Design not found
   }
   
   setItem(SAVED_CONFIGS_KEY, newConfigs);

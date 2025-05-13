@@ -1,33 +1,55 @@
+/* OptionForm.module.css */
+
 .formGroup {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .label {
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    color: #333;
-  }
-  
-  .select {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    transition: border-color 0.2s ease-in-out;
-  }
-  
-  .select:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  .textarea {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    resize: vertical;
-  }
-  
+  /* Component-specific variables */
+  --form-spacing-xs: 0.25rem;
+  --form-spacing-sm: 0.5rem;
+  --form-spacing-md: 1rem;
+  --form-color-text: #333;
+  --form-color-border: #ccc;
+  --form-color-focus: #007bff;
+  --form-border-radius-sm: 4px;
+  --form-border-radius-md: 6px;
+  --form-font-size-base: 1rem;
+
+  /* Component styles */
+  margin-bottom: var(--form-spacing-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: 600;
+  margin-bottom: var(--form-spacing-xs);
+  color: var(--form-color-text);
+}
+
+.select {
+  padding: var(--form-spacing-sm);
+  font-size: var(--form-font-size-base);
+  border-radius: var(--form-border-radius-md);
+  border: 1px solid var(--form-color-border);
+  transition: border-color 0.2s ease-in-out;
+}
+
+.select:focus {
+  border-color: var(--form-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.textarea {
+  width: 100%;
+  padding: var(--form-spacing-sm);
+  font-size: var(--form-font-size-base);
+  border-radius: var(--form-border-radius-sm);
+  border: 1px solid var(--form-color-border);
+  resize: vertical;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.textarea:focus {
+  border-color: var(--form-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}

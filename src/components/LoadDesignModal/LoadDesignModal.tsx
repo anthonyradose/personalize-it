@@ -4,7 +4,6 @@ import React from "react";
 import styles from "./LoadDesignModal.module.css";
 import type { LoadDesignModalProps } from "../../types";
 
-
 const LoadDesignModal: React.FC<LoadDesignModalProps> = ({
   isOpen,
   onClose,
@@ -17,11 +16,11 @@ const LoadDesignModal: React.FC<LoadDesignModalProps> = ({
   // Format date for display
   const formatDate = (timestamp: number): string => {
     return new Date(timestamp).toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -29,9 +28,11 @@ const LoadDesignModal: React.FC<LoadDesignModalProps> = ({
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
         <h2 className={styles.modalTitle}>Your Saved Designs</h2>
-        
+
         {savedDesigns.length === 0 ? (
-          <p className={styles.emptyMessage}>You don't have any saved designs yet.</p>
+          <p className={styles.emptyMessage}>
+            You don't have any saved designs yet.
+          </p>
         ) : (
           <div className={styles.designsList}>
             {savedDesigns.map((design) => (
@@ -39,14 +40,14 @@ const LoadDesignModal: React.FC<LoadDesignModalProps> = ({
                 <div className={styles.designInfo}>
                   <h3 className={styles.designName}>{design.name}</h3>
                   <p className={styles.designDetails}>
-                    {design.product} 
+                    {design.product}
                     <span className={styles.designDate}>
                       {formatDate(design.savedAt)}
                     </span>
                   </p>
                 </div>
                 <div className={styles.designActions}>
-                  <button 
+                  <button
                     className={styles.loadButton}
                     onClick={() => {
                       onLoad(design);
@@ -55,7 +56,7 @@ const LoadDesignModal: React.FC<LoadDesignModalProps> = ({
                   >
                     Load
                   </button>
-                  <button 
+                  <button
                     className={styles.deleteButton}
                     onClick={() => onDelete(design.id)}
                   >
@@ -66,12 +67,9 @@ const LoadDesignModal: React.FC<LoadDesignModalProps> = ({
             ))}
           </div>
         )}
-        
+
         <div className={styles.modalFooter}>
-          <button
-            className={styles.closeButton}
-            onClick={onClose}
-          >
+          <button className={styles.closeButton} onClick={onClose}>
             Close
           </button>
         </div>

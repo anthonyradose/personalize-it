@@ -1,10 +1,8 @@
-
 import React, { useState } from "react";
-import styles from "./SaveConfigurationModal.module.css";
-import type { SaveConfigurationModalProps } from "../../types";
+import styles from "./SaveDesignModal.module.css";
+import type { SaveDesignModalProps } from "../../types";
 
-
-const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
+const SaveDesignModal: React.FC<SaveDesignModalProps> = ({
   isOpen,
   onClose,
   onSave,
@@ -16,12 +14,12 @@ const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!configName.trim()) {
       setError("Please enter a name for your design");
       return;
     }
-    
+
     onSave(configName);
     setConfigName("");
     setError("");
@@ -32,7 +30,7 @@ const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
         <h2 className={styles.modalTitle}>Save Your Design</h2>
-        
+
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label htmlFor="config-name" className={styles.label}>
@@ -48,7 +46,7 @@ const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
             />
             {error && <p className={styles.errorText}>{error}</p>}
           </div>
-          
+
           <div className={styles.buttonGroup}>
             <button
               type="button"
@@ -67,4 +65,4 @@ const SaveConfigurationModal: React.FC<SaveConfigurationModalProps> = ({
   );
 };
 
-export default SaveConfigurationModal;
+export default SaveDesignModal;

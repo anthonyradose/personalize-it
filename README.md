@@ -28,12 +28,12 @@ This Product Customizer is a web application that simulates an e-commerce produc
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/product-customizer.git
+   git clone https://github.com/your-username/personalize-it.git
    ```
 
 2. Navigate to the project folder:
    ```
-   cd product-customizer
+   cd personalize-it
    ```
 
 3. Install dependencies:
@@ -59,7 +59,7 @@ src/
 │   ├── LoadDesignModal/ # Modal for loading saved designs
 │   ├── OptionForm/    # Form for product customization options
 │   ├── ProductSelector/ # Dropdown for product selection
-│   └── SaveConfigurationModal/ # Modal for saving designs
+│   └── SaveDesignModal/ # Modal for saving designs
 ├── data/              # Mock data (product information)
 ├── hooks/             # Custom React hooks
 │   ├── useDesignManager.ts # Hook for managing saved designs
@@ -92,7 +92,7 @@ I approached this project with a focus on creating a clean, maintainable codebas
 
 4. **Type Safety**: Used TypeScript interfaces for all components and data structures to ensure type safety and improve developer experience.
 
-5. **User Experience**: Focused on intuitive flow with real-time preview, validation messages, and smooth transitions.
+5. **User Experience**: Focused on intuitive flow with real-time preview, validation messages
 
 ## Assumptions Made
 
@@ -110,31 +110,31 @@ I approached this project with a focus on creating a clean, maintainable codebas
 
 With more time, I would enhance the application in the following ways:
 
-1. **State Management**: Implement Redux or Context API for more robust state management in a larger application.
-
-2. **Testing**: 
+1. **Testing**: 
    - Add comprehensive unit and integration tests using Jest and React Testing Library.
    - Run the app through Lighthouse and various HTML and CSS validators
 
-3. **Enhanced Validation**: Add more sophisticated validation, including custom text validation rules.
+2. **Enhanced Validation**: Add more sophisticated validation, including custom text validation rules.
 
-4. **Accessibility**: Improve accessibility with better keyboard navigation, ARIA attributes, and screen reader support.
+3. **Accessibility**: Improve accessibility with better keyboard navigation, ARIA attributes, and screen reader support.
 
-5. **UI Enhancements**:
+4. **UI Enhancements**:
    - Add animations for smoother transitions
    - Improve mobile responsiveness
    - Implement drag-and-drop for text positioning
+   - Implement a CSS framework like Tailwind CSS, Material UI, or Bootstrap for a more polished UI
 
-6. **Additional Features**:
+5. **Additional Features**:
    - User accounts and authentication
    - Design sharing capabilities
    - Image upload for custom designs
    - More products related to the gym theme and more customization options.
+   - Deploy with GH-Pages
 
-7. **Performance Optimization**:
+6. **Performance Optimization**:
    - Implement code splitting
    - Optimize image loading
    - Add caching strategies
 
-8. **Backend Integration**:
+7. **Backend Integration**:
    - Replace localStorage with a real backend API

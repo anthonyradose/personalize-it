@@ -1,10 +1,10 @@
 import { useState, useCallback} from 'react';
 import { 
-  saveConfiguration, 
-  getSavedConfigurations, 
-  deleteConfiguration 
+  saveDesign, 
+  getSavedDesigns, 
+  deleteDesign
 } from '../services/configurationService';
-import type { SavedConfiguration } from '../types';
+import type { SavedDesign } from '../types';
 
 export function useDesignManager(
   selectedProduct: string,
@@ -13,26 +13,26 @@ export function useDesignManager(
   setSelectedOptions: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>,
   showMessage: (text: string, type?: 'success' | 'error') => void
 ) {
-  const [savedDesigns, setSavedDesigns] = useState<SavedConfiguration[]>([]);
+  const [savedDesigns, setSavedDesigns] = useState<SavedDesign[]>([]);
 
   const loadSavedDesigns = useCallback(() => {
-    setSavedDesigns(getSavedConfigurations());
+    setSavedDesigns(getSavedDesigns());
   }, []);
 
   const handleSaveDesign = useCallback((name: string) => {
-    const savedConfig = saveConfiguration(name, selectedProduct, selectedOptions);
+    const savedConfig = saveDesign(name, selectedProduct, selectedOptions);
     setSavedDesigns(prevDesigns => [...prevDesigns, savedConfig]);
     showMessage(`Your ${selectedProduct} design "${name}" saved successfully!`);
   }, [selectedProduct, selectedOptions, showMessage]);
 
-  const handleLoadDesign = useCallback((design: SavedConfiguration) => {
+  const handleLoadDesign = useCallback((design: SavedDesign) => {
     setSelectedProduct(design.product);
     setSelectedOptions(design.options);
     showMessage(`Design "${design.name}" loaded successfully!`);
   }, [setSelectedProduct, setSelectedOptions, showMessage]);
 
   const handleDeleteDesign = useCallback((id: string) => {
-    deleteConfiguration(id);
+    deleteDesign(id);
     setSavedDesigns(prevDesigns => prevDesigns.filter(design => design.id !== id));
     showMessage('Design deleted successfully!');
   }, [showMessage]);

@@ -1,32 +1,47 @@
+/* ProductSelector.module.css */
+
 .product-selector-container {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-  }
-  
-  .product-selector-container label {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-  
-  .product-selector-container select {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    max-width: 250px;
-    margin-top: 0.5rem;
-    transition: border-color 0.3s ease;
-  }
-  
-  .product-selector-container select:hover {
-    border-color: #888;
-  }
-  
-  .product-selector-container select:focus {
-    border-color: #0056b3;
-    outline: none;
-  }
-  
+  /* Component-specific variables */
+  --selector-spacing-sm: 0.5rem;
+  --selector-spacing-md: 1rem;
+  --selector-font-size-base: 1rem;
+  --selector-font-size-lg: 1.1rem;
+  --selector-color-border: #ccc;
+  --selector-color-border-hover: #888;
+  --selector-color-border-focus: #0056b3;
+  --selector-border-radius: 4px;
+  --selector-transition-duration: 0.3s;
+
+  /* Component styles */
+  margin-bottom: var(--selector-spacing-md);
+  padding: var(--selector-spacing-sm);
+}
+
+.product-selector-container label {
+  font-size: var(--selector-font-size-lg);
+  font-weight: bold;
+  margin-bottom: var(--selector-spacing-sm);
+  display: block;
+}
+
+.product-selector-container select {
+  padding: var(--selector-spacing-sm);
+  font-size: var(--selector-font-size-base);
+  border: 1px solid var(--selector-color-border);
+  border-radius: var(--selector-border-radius);
+  width: 100%;
+  max-width: 250px;
+  margin-top: var(--selector-spacing-sm);
+  transition: border-color var(--selector-transition-duration) ease,
+    box-shadow var(--selector-transition-duration) ease;
+}
+
+.product-selector-container select:hover {
+  border-color: var(--selector-color-border-hover);
+}
+
+.product-selector-container select:focus {
+  border-color: var(--selector-color-border-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+}

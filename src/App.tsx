@@ -6,11 +6,11 @@ import ProductSelector from "./components/ProductSelector/ProductSelector";
 import OptionForm from "./components/OptionForm/OptionForm";
 import LivePreview from "./components/LivePreview/LivePreview";
 import ActionBar from "./components/ActionBar/ActionBar";
-import SaveConfigurationModal from "./components/SaveConfigurationModal/SaveConfigurationModal";
+import SaveDesignModal from "./components/SaveDesignModal/SaveDesignModal";
 import LoadDesignModal from "./components/LoadDesignModal/LoadDesignModal";
 import usePersistedState from "./hooks/usePersistedState";
 import { useMessage } from "./hooks/useMessage";
-import {useDesignManager} from "./hooks/useDesignManager";
+import { useDesignManager } from "./hooks/useDesignManager";
 import { getProductByName } from "./utils/productUtils";
 import { validateProductConfiguration } from "./utils/validationUtils";
 import styles from "./styles/App.module.css";
@@ -19,34 +19,32 @@ import { logo1, defaultImg } from "./assets/images/index";
 const App: React.FC = () => {
   // Product customization state
   const [selectedProduct, setSelectedProduct] = usePersistedState<string>(
-    "selectedProduct", 
-    "", 
+    "selectedProduct",
+    "",
     false
   );
-  
-  const [selectedOptions, setSelectedOptions] = usePersistedState<{ [key: string]: string }>(
-    "selectedOptions", 
-    {}, 
-    false
-  );
+
+  const [selectedOptions, setSelectedOptions] = usePersistedState<{
+    [key: string]: string;
+  }>("selectedOptions", {}, false);
 
   // Modal visibility state
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [isLoadModalOpen, setIsLoadModalOpen] = useState(false);
-  
+
   // Get the current product
   const product = getProductByName(selectedProduct, products);
 
   // Use the message hook for notifications
   const { message, showMessage } = useMessage();
-  
+
   // Use the design manager hook for design operations
   const {
     savedDesigns,
     loadSavedDesigns,
     handleSaveDesign,
     handleLoadDesign,
-    handleDeleteDesign
+    handleDeleteDesign,
   } = useDesignManager(
     selectedProduct,
     selectedOptions,
@@ -78,22 +76,25 @@ const App: React.FC = () => {
       showMessage("Please select a product", "error");
       return false;
     }
-    
+
     // Skip validation for products with no options
     if (product.options.length === 0) {
       return true;
     }
-    
-    const { isValid, missingOptions } = validateProductConfiguration(product, selectedOptions);
-    
+
+    const { isValid, missingOptions } = validateProductConfiguration(
+      product,
+      selectedOptions
+    );
+
     if (!isValid) {
       showMessage(
-        `Please select the following options: ${missingOptions.join(", ")}`, 
+        `Please select the following options: ${missingOptions.join(", ")}`,
         "error"
       );
       return false;
     }
-    
+
     return true;
   };
 
@@ -102,9 +103,12 @@ const App: React.FC = () => {
     if (!validateConfiguration()) {
       return;
     }
-    
-    console.log("Submitting config", { product: selectedProduct, options: selectedOptions });
-    
+
+    console.log("Submitting config", {
+      product: selectedProduct,
+      options: selectedOptions,
+    });
+
     // Show added to cart message
     showMessage(`${selectedProduct} added to cart successfully!`);
   };
@@ -114,7 +118,7 @@ const App: React.FC = () => {
     if (!validateConfiguration()) {
       return;
     }
-    
+
     setIsSaveModalOpen(true);
   };
 
@@ -122,7 +126,7 @@ const App: React.FC = () => {
     setIsLoadModalOpen(true);
   };
 
-  const handleSaveConfiguration = (name: string) => {
+  const handleSaveDesignClick = (name: string) => {
     handleSaveDesign(name);
     setIsSaveModalOpen(false);
   };
@@ -148,7 +152,7 @@ const App: React.FC = () => {
             onProductChange={handleProductChange}
             selectedProduct={selectedProduct}
           />
-          
+
           {/* Render OptionForm only if a product has been selected */}
           {selectedProduct && product && (
             <OptionForm
@@ -170,22 +174,22 @@ const App: React.FC = () => {
       </main>
 
       <footer className={styles.footer}>
-        <ActionBar 
-          onSubmit={handleSubmit} 
+        <ActionBar
+          onSubmit={handleSubmit}
           onSaveClick={handleSaveClick}
           onLoadClick={handleLoadClick}
         />
       </footer>
 
-      {/* Save Configuration Modal */}
-      <SaveConfigurationModal 
+      {/* Save Design Modal */}
+      <SaveDesignModal
         isOpen={isSaveModalOpen}
         onClose={() => setIsSaveModalOpen(false)}
-        onSave={handleSaveConfiguration}
+        onSave={handleSaveDesignClick}
       />
 
       {/* Load Design Modal */}
-      <LoadDesignModal 
+      <LoadDesignModal
         isOpen={isLoadModalOpen}
         onClose={() => setIsLoadModalOpen(false)}
         savedDesigns={savedDesigns}

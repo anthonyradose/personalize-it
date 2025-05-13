@@ -2,16 +2,15 @@ import React from "react";
 import styles from "./ActionBar.module.css";
 import type { ActionBarProps } from "../../types";
 
-
-const ActionBar: React.FC<ActionBarProps> = ({ 
-  onSubmit, 
+const ActionBar: React.FC<ActionBarProps> = ({
+  onSubmit,
   onSaveClick,
-  onLoadClick
+  onLoadClick,
 }) => {
   return (
     <div className={styles.actionBar}>
       <div className={styles.loadDesignContainer}>
-        <button 
+        <button
           className={styles.loadButton}
           onClick={onLoadClick}
           type="button"
@@ -20,15 +19,15 @@ const ActionBar: React.FC<ActionBarProps> = ({
         </button>
       </div>
       <div className={styles.primaryActions}>
-        <button 
-          className={styles.saveButton} 
+        <button
+          className={styles.saveButton}
           onClick={onSaveClick}
           type="button"
         >
           Save Design
         </button>
-        <button 
-          className={styles.submitButton} 
+        <button
+          className={styles.submitButton}
           onClick={onSubmit}
           type="button"
         >

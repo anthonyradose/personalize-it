@@ -31,15 +31,13 @@ export interface LivePreviewProps {
   defaultImage?: string;
 }
 
-
-
-export interface SaveConfigurationModalProps {
+export interface SaveDesignModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (name: string) => void;
 }
 
-export interface SavedConfiguration {
+export interface SavedDesign {
   id: string;
   name: string;
   product: string;
@@ -50,15 +48,13 @@ export interface SavedConfiguration {
 export interface ActionBarProps {
   onSubmit: () => void;
   onSaveClick: () => void;
-  onLoadClick: () => void; 
+  onLoadClick: () => void;
 }
 
 export interface LoadDesignModalProps {
   isOpen: boolean;
   onClose: () => void;
-  savedDesigns: SavedConfiguration[];
-  onLoad: (design: SavedConfiguration) => void;
+  savedDesigns: SavedDesign[];
+  onLoad: (design: SavedDesign) => void;
   onDelete: (id: string) => void;
 }
-
-

@@ -1,77 +1,100 @@
+/* App.module.css with component-scoped variables */
+
 .appContainer {
+  /* App-specific variables */
+  --app-color-background: #f4f4f4;
+  --app-color-text: #333;
+  --app-color-success: #4caf50;
+  --app-color-error: #f44336;
+  --app-color-white: #fff;
+  --app-spacing-sm: 10px;
+  --app-spacing-md: 20px;
+  --app-spacing-lg: 40px;
+  --app-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --app-border-radius: 8px;
+
+  /* Component styles */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  padding: 20px;
+  background-color: var(--app-color-background);
+  padding: var(--app-spacing-md);
 }
 
 .header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--app-spacing-md);
 }
 
 .heading {
-  font-size: 2rem;
   font-weight: bold;
-  color: #333;
+  color: var(--app-color-text);
 }
 
 .main {
   display: flex;
-  flex-direction: column; 
-  gap: 20px;
+  flex-direction: column;
+  gap: var(--app-spacing-md);
   flex: 1;
 }
 
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--app-spacing-md);
 }
 
 .preview {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background-color: var(--app-color-white);
+  border-radius: var(--app-border-radius);
+  box-shadow: var(--app-shadow);
+  padding: var(--app-spacing-md);
 }
 
 .footer {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: var(--app-spacing-md);
 }
+
 .message {
   text-align: center;
-  padding: 10px;
+  padding: var(--app-spacing-sm);
   border-radius: 4px;
-  margin: 10px 0;
+  margin: var(--app-spacing-sm) 0;
   animation: fadeIn 0.3s, fadeOut 0.5s 2.5s;
 }
 
 .success {
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--app-color-success);
+  color: var(--app-color-white);
 }
 
 .error {
-  background-color: #f44336;
-  color: white;
+  background-color: var(--app-color-error);
+  color: var(--app-color-white);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /* Breakpoints */
@@ -104,7 +127,8 @@
     justify-content: space-between;
   }
 
-  .controls, .preview {
+  .controls,
+  .preview {
     flex: 1;
   }
 }
@@ -114,32 +138,12 @@
   .heading {
     font-size: 2.25rem;
   }
-
-  .controls {
-    flex-direction: column;
-  }
-
-  .preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
 /* 992px (small desktops) */
 @media (min-width: 992px) {
   .heading {
     font-size: 2.5rem;
-  }
-
-  .controls {
-    flex-direction: column;
-  }
-
-  .preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 
@@ -150,7 +154,7 @@
   }
 
   .footer {
-    margin-top: 40px;
+    margin-top: var(--app-spacing-lg);
   }
 }
 
@@ -158,15 +162,6 @@
 @media (min-width: 1200px) {
   .heading {
     font-size: 3rem;
-  }
-
-  .main {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .controls, .preview {
-    flex: 1;
   }
 }
 
