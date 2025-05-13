@@ -39,7 +39,7 @@
 }
 
 .textarea {
-  width: 100%;
+  width: 95%;
   padding: var(--form-spacing-sm);
   font-size: var(--form-font-size-base);
   border-radius: var(--form-border-radius-sm);

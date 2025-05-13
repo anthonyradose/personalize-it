@@ -25,7 +25,9 @@
 
   padding: var(--app-spacing-md);
 }
-
+.logo{
+  width: 100%;
+}
 .header {
   text-align: center;
   margin-bottom: var(--app-spacing-md);
@@ -131,10 +133,6 @@
 
 /* 576px (small tablets) */
 @media (min-width: 576px) {
-  .main {
-    flex-direction: row;
-    justify-content: space-between;
-  }
 
   .controls,
   .preview {
@@ -147,6 +145,9 @@
   .heading {
     font-size: 2.25rem;
   }
+  .logo{
+  width: 50%;
+}
 }
 
 /* 992px (small desktops) */
@@ -154,6 +155,15 @@
   .heading {
     font-size: 2.5rem;
   }
+  .logo{
+  width: 30%;
+  margin-right: 70%;
+}
+  .main {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
 }
 
 /* 1024px (larger tablets or small desktops) */

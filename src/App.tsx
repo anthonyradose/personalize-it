@@ -14,7 +14,7 @@ import { useDesignManager } from "./hooks/useDesignManager";
 import { getProductByName } from "./utils/productUtils";
 import { validateProductConfiguration } from "./utils/validationUtils";
 import styles from "./styles/App.module.css";
-import { logo1, defaultImg } from "./assets/images/index";
+import {  logo3, defaultImg } from "./assets/images/index";
 
 const App: React.FC = () => {
   // Product customization state
@@ -134,7 +134,7 @@ const App: React.FC = () => {
   return (
     <div className={styles.appContainer}>
       <header className={styles.header}>
-        <img src={logo1} alt="Logo" className={styles.logo} />
+        <img src={logo3} alt="Logo" className={styles.logo} />
         <h1 className={styles.heading}>Product Customizer</h1>
       </header>
 
