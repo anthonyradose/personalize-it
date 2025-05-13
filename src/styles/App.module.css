@@ -11,7 +11,6 @@
   --app-spacing-md: 20px;
   --app-spacing-lg: 40px;
   --app-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --app-border-radius: 8px;
 
   /* Component styles */
   display: flex;
@@ -38,7 +37,6 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   text-align: left;
   padding: 0.2em 0.5em;
-  border-radius: 4px;
   letter-spacing: 0.02em;
   font-weight: 500;
 }
@@ -60,8 +58,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--app-color-white);
-  border-radius: var(--app-border-radius);
+  background-color: rgba(0, 0, 0, 0.2);
   box-shadow: var(--app-shadow);
   padding: var(--app-spacing-md);
 }
@@ -75,7 +72,6 @@
 .message {
   text-align: center;
   padding: var(--app-spacing-sm);
-  border-radius: 4px;
   margin: var(--app-spacing-sm) 0;
   animation: fadeIn 0.3s, fadeOut 0.5s 2.5s;
 }

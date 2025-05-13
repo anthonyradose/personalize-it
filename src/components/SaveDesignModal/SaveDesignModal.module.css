@@ -23,7 +23,6 @@
   --modal-font-size-base: 1rem;
   --modal-font-size-md: 1.1rem;
   --modal-font-size-lg: 1.5rem;
-  --modal-border-radius: 4px;
   --modal-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   /* Component styles */
@@ -43,7 +42,6 @@
 .modalContent {
   background-color: var(--modal-color-white);
   padding: var(--modal-spacing-xl);
-  border-radius: var(--modal-border-radius);
   box-shadow: var(--modal-box-shadow);
   width: 100%;
   max-width: 500px;
@@ -69,7 +67,6 @@
 .input {
   width: 100%;
   border: 1px solid var(--modal-color-border);
-  border-radius: var(--modal-border-radius);
   font-size: var(--modal-font-size-base);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -95,7 +92,6 @@
 .cancelButton,
 .saveButton {
   padding: var(--modal-spacing-sm) var(--modal-spacing-md);
-  border-radius: var(--modal-border-radius);
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s, box-shadow 0.2s;

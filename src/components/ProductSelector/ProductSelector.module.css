@@ -9,12 +9,12 @@
   --selector-color-border: #ccc;
   --selector-color-border-hover: #888;
   --selector-color-border-focus: #0056b3;
-  --selector-border-radius: 4px;
   --selector-transition-duration: 0.3s;
 
   /* Component styles */
   margin-bottom: var(--selector-spacing-md);
   padding: var(--selector-spacing-sm);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .product-selector-container label {
@@ -29,7 +29,6 @@
   padding: var(--selector-spacing-sm);
   font-size: var(--selector-font-size-base);
   border: 1px solid var(--selector-color-border);
-  border-radius: var(--selector-border-radius);
   width: 100%;
   max-width: 250px;
   margin-top: var(--selector-spacing-sm);

@@ -14,7 +14,6 @@
   --action-spacing-sm: 0.75rem;
   --action-spacing-md: 1rem;
   --action-spacing-lg: 1.5rem;
-  --action-border-radius: 4px;
   --action-min-button-width: 150px;
   --action-button-font-weight: 500;
   --action-scale-active: 0.98;
@@ -29,6 +28,7 @@
 
 .loadDesignContainer {
   flex: 1;
+  text-align: center;
 }
 
 .primaryActions {
@@ -40,7 +40,6 @@
 .saveButton,
 .loadButton {
   padding: var(--action-spacing-sm) var(--action-spacing-lg);
-  border-radius: var(--action-border-radius);
   font-weight: var(--action-button-font-weight);
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
@@ -114,5 +113,10 @@
   .loadButton {
     min-width: 0;
     flex: 1;
+  }
+}
+@media(min-width: 992px){
+  .loadDesignContainer{
+     text-align: unset
   }
 }

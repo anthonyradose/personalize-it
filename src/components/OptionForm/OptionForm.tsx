@@ -8,7 +8,7 @@ const OptionForm: React.FC<OptionFormProps> = ({
   onOptionChange,
 }) => {
   return (
-    <div>
+    <div className={styles.optionFormContainer}>
       {options.map((option) => (
         <div key={option.name} className={styles.formGroup}>
           <label htmlFor={option.name} className={styles.label}>

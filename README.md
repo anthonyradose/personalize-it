@@ -123,6 +123,9 @@ With more time, I would enhance the application in the following ways:
    - Improve mobile responsiveness
    - Implement drag-and-drop for text positioning
    - Implement a CSS framework like Tailwind CSS, Material UI, or Bootstrap for a more polished UI
+   - style modals to be more consistent with the rest of the contents
+   - refactor some naming conventions for css classes
+   - adjust image sizing and improve empty whitespace
 
 5. **Additional Features**:
    - User accounts and authentication

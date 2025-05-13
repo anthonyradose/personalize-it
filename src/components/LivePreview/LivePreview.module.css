@@ -22,9 +22,6 @@
 
 .live-preview-container {
   padding: var(--spacing-sm);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  background-color: var(--color-background);
   margin: var(--spacing-lg) auto;
   max-width: 400px;
   overflow-wrap: break-word;
@@ -33,18 +30,19 @@
   hyphens: auto;
   white-space: normal;
   overflow: hidden;
+  font-weight: bold;
 }
 
 .live-preview-container h3 {
   font-size: var(--font-size-lg);
   margin-bottom: var(--spacing-sm);
-  color: var(--color-heading);
+  color: white
 }
 
 .live-preview-container p {
   font-size: var(--font-size-base);
   margin-bottom: var(--spacing-xs);
-  color: var(--color-text);
+  color: white
 }
 
 .live-preview-container p:first-child {

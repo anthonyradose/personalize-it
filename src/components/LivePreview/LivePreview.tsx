@@ -13,6 +13,9 @@ const LivePreview: React.FC<LivePreviewProps> = ({
   if (!selectedProduct) {
     return (
       <div className={styles["live-preview-container"]}>
+        <div className={styles["select-prompt"]}>
+          <p>No product selected</p>
+        </div>
         <div className={styles["image-container"]}>
           <img
             src={defaultImage}

@@ -1,5 +1,8 @@
 /* OptionForm.module.css */
 
+.optionFormContainer{
+   background-color: rgba(0, 0, 0, 0.2);
+}
 .formGroup {
   /* Component-specific variables */
   --form-spacing-xs: 0.25rem;
@@ -8,26 +11,24 @@
   --form-color-text: #333;
   --form-color-border: #ccc;
   --form-color-focus: #007bff;
-  --form-border-radius-sm: 4px;
-  --form-border-radius-md: 6px;
   --form-font-size-base: 1rem;
 
   /* Component styles */
   margin-bottom: var(--form-spacing-md);
   display: flex;
   flex-direction: column;
+  padding: var(--form-spacing-md);
 }
 
 .label {
   font-weight: 500;
   margin-bottom: var(--form-spacing-xs);
-  color: var(--form-color-text);
+  color: white
 }
 
 .select {
   padding: var(--form-spacing-sm);
   font-size: var(--form-font-size-base);
-  border-radius: var(--form-border-radius-md);
   border: 1px solid var(--form-color-border);
   transition: border-color 0.2s ease-in-out;
 }
@@ -42,7 +43,6 @@
   width: 95%;
   padding: var(--form-spacing-sm);
   font-size: var(--form-font-size-base);
-  border-radius: var(--form-border-radius-sm);
   border: 1px solid var(--form-color-border);
   resize: vertical;
   transition: border-color 0.2s ease-in-out;
