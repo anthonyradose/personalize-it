@@ -29,5 +29,5 @@ export {
   gymBag,
   giftCard,
   logo1,
-  defaultImg
+  defaultImg,
 };

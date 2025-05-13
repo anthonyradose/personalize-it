@@ -22,6 +22,7 @@
   font-weight: bold;
   margin-bottom: var(--selector-spacing-sm);
   display: block;
+  color: white;
 }
 
 .product-selector-container select {
